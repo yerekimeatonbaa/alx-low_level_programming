@@ -1,19 +1,21 @@
 #include <stdlib.h>
+#include <time.h>
 #include <stdio.h>
 
 /**
- * main - the function main use printf to print numbers
+ * main - the function main prints all alphabet
+ *
  *
  * Return: Always 0 (Sucess)
  */
 int main(void)
 {
-	int i;
+	int n;
 
-	for (i = 0; i < 10; ++i)
+	for (n = 48; n <= 57; ++n)
 	{
-		printf("%d", i);
+		putchar(n);
 	}
-	printf("\n");
+	putchar('\n');
 	return (0);
 }
