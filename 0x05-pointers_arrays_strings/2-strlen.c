@@ -1,12 +1,5 @@
 #include "main.h"
 
-/*
- * File: 2-strlen.c
- * Auth: Brennan D Baraban
- */
-
-#include "holberton.h"
-
 /**
  * _strlen - Returns the length of a string.
  * @str: The string to get the length of.
