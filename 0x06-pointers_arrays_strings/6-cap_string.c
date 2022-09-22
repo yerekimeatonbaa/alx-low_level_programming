@@ -1,35 +1,34 @@
 #include "main.h"
-
 /**
- * c_2_upper - fuction capitalize the strings.
- * @letter: is the string to capitalize.
+ * cap_string - capitalize all words of string
+ * Return: void
+ * @s: string
  */
-void c_2_upper(char *letter)
+char *cap_string(char *s)
 {
-	if (*letter >= 'a' && *letter <= 'z')
-		*letter -= 32;
-}
-/**
- * cap_string - function that capitalizes all words of a string.
- * @str: is the string to capitalize.
- * Return: str.
- */
-char *cap_string(char *str)
-{
-	int i, j;
-	char separators[] = " ,;.!?(){}\"\t\n";
+	int i = 0, j = 0;
 
-	for (i = 0; str[i] != '\0'; i++)
-		for (j = 0; separators[j] != '\0'; j++)
-			if (i == 0)
+	char seps[] = {32, 10, 9, 44, 59, 46, 33, 63, 34, 40, 41, 123, 125};
+
+	int size = sizeof(seps) / sizeof(seps[0]);
+
+	while (s[i] != 0)
+	{
+		char c = s[i];
+
+		for (j = 0; j < size; j++)
+		{
+			if (c == seps[j] && s[i + 1] >= 'a' && s[i + 1] <= 'z')
 			{
-				c_2_upper(&str[i]);
+				s[i + 1] = 'A' + (s[i + 1] - 'a');
 				break;
 			}
-			else if (str[i - 1] == separators[j])
-			{
-				c_2_upper(&str[i]);
-				break;
-			}
-	return (str);
+		}
+		i++;
+	}
+
+	if (s[0] >= 'a' && s[0] <= 'z')
+		s[0] = 'A' + (s[0] - 'a');
+
+	return (s);
 }
