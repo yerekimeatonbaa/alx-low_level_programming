@@ -1,26 +1,29 @@
 #include "main.h"
-#include <stdio.h>
 
 /**
- * main - check the code
- *
- * Return: Always 0.
+ * _strncat - concatenates two strings
+ * @dest: dest string
+ * @src: src string
+ * @n: limit
+ * Return: pointer to resulting string
  */
-int main(void)
-{
-    char s1[98] = "Hello ";
-    char s2[] = "World!\n";
-    char *ptr;
 
-    printf("%s\n", s1);
-    printf("%s", s2);
-    ptr = _strncat(s1, s2, 1);
-    printf("%s\n", s1);
-    printf("%s", s2);
-    printf("%s\n", ptr);
-    ptr = _strncat(s1, s2, 1024);
-    printf("%s", s1);
-    printf("%s", s2);
-    printf("%s", ptr);
-    return (0);
+char *_strncat(char *dest, char *src, int n)
+{
+	int s = 0, i = 0;
+
+	while (*(dest + s) != 0)
+	{
+		s++;
+	}
+	while (*(src + i) != 0)
+	{
+		*(dest + s + i)	= *(src + i);
+		if (i >= n)
+			break;
+		i++;
+	}
+
+	*(dest + s + i) = 0;
+	return (dest);
 }
