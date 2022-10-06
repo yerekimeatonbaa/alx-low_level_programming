@@ -2,15 +2,16 @@
 #include <stdlib.h>
 
 /**
- * str_concat - concatenates two strings
- * @s1: first string
- * @s2: second string
+ * string_nconcat - concatenates two strings.
+ * @s1: first string to copy
+ * @s2: second string to copy
+ * @n: number of bytes of s2 to copy
  *
- * Return: pointer to newly allocated space in memory, or NULL if error
+ * Return: char pointer to newly allocated place in memory
  */
-char *str_concat(char *s1, char *s2)
+char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	unsigned int i, j, k, l;
+	unsigned int i, j, k;
 	char *s;
 
 	if (s1 == NULL)
@@ -27,14 +28,15 @@ char *str_concat(char *s1, char *s2)
 		for (j = 0; s2[j]; j++)
 			;
 	}
-	k = i + j + 1;
-	s = malloc(k * sizeof(char));
+	if (j > n)
+		j = n;
+	s = malloc(sizeof(char) * (i + j + 1));
 	if (s == NULL)
 		return (NULL);
-	for (l = 0; l < i; l++)
-		s[l] = s1[l];
-	for (l = 0; l < j; l++)
-		s[l + i] = s2[l];
+	for (k = 0; k < i; k++)
+		s[k] = s1[k];
+	for (k = 0; k < j; k++)
+		s[k + i] = s2[k];
 	s[i + j] = '\0';
 	return (s);
 }
