@@ -1,21 +1,34 @@
 #include "main.h"
 
 /**
- * _strncpy - function that concatenates two strings.
- * @n: is the pointer is the origin.
- * @dest: is the pointer is the destiny.
- * @src: is the pointer is the destiny.
- * Return: d.
+ * _strspn - Gets the length of a prefix substring.
+ * @s: The string to be searched.
+ * @accept: The prefix to be measured.
+ *
+ * Return: The number of bytes in s which
+ *         consist only of bytes from accept.
  */
-
-char *_strncpy(char *dest, char *src, int n)
+unsigned int _strspn(char *s, char *accept)
 {
-	int i;
+	unsigned int bytes = 0;
+	int index;
 
-	for (i = 0; i < n && src[i] != '\0'; i++)
-		dest[i] = src[i];
-	for ( ; i < n; i++)
-		dest[i] = '\0';
+	while (*s)
+	{
+		for (index = 0; accept[index]; index++)
+		{
+			if (*s == accept[index])
+			{
+				bytes++;
+				break;
+			}
 
-	return (dest);
+			else if (accept[index + 1] == '\0')
+				return (bytes);
+		}
+
+		s++;
+	}
+
+	return (bytes);
 }
